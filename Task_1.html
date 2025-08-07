@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Age to Days Converter</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+      }
+
+      .converter {
+        background: #ffffff;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        width: 320px;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .converter h2 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+        font-size: 24px;
+      }
+
+      input {
+        padding: 12px;
+        width: 100%;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #3498db;
+        outline: none;
+      }
+
+      button {
+        padding: 12px 25px;
+        font-size: 16px;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #2c3e50;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="converter">
+      <h2>Age to Days Converter</h2>
+      <input
+        type="number"
+        id="ageInput"
+        placeholder="Enter your age in years"
+      />
+      <button onclick="convertAge()">Convert to Days</button>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function convertAge() {
+        const age = parseInt(document.getElementById("ageInput").value);
+        const resultDiv = document.getElementById("result");
+
+        if (isNaN(age) || age < 0) {
+          resultDiv.textContent = "❌ Please enter a valid positive age.";
+        } else {
+          const days = age * 365;
+          resultDiv.textContent = `✅ ${age} years ≈ ${days.toLocaleString()} days`;
+        }
+      }
+    </script>
+  </body>
+</html>
