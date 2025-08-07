@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hours to Seconds Converter</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #fff;
+      }
+
+      .converter {
+        background-color: white;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        text-align: center;
+        color: #333;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #0072ff;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #0072ff;
+        outline: none;
+      }
+
+      button {
+        padding: 12px 20px;
+        font-size: 16px;
+        background-color: #0072ff;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #005fc1;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #2c3e50;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="converter">
+      <h2>Hours to Seconds</h2>
+      <input type="number" id="hoursInput" placeholder="Enter hours" />
+      <button onclick="convert()">Convert</button>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function convert() {
+        var input = document.getElementById("hoursInput").value;
+        var resultBox = document.getElementById("result");
+        var hours = parseFloat(input);
+
+        if (isNaN(hours) || hours < 0) {
+          resultBox.textContent = "❌ Please enter a valid number of hours.";
+        } else {
+          var seconds = hours * 3600;
+          resultBox.textContent =
+            "✅ " +
+            hours +
+            " hours = " +
+            seconds.toLocaleString() +
+            " seconds.";
+        }
+      }
+    </script>
+  </body>
+</html>
