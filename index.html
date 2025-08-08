@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>7 Tasks App - Stylish Version</title>
+<link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <button onclick="showTask(1)">Task 1</button>
+      <button onclick="showTask(2)">Task 2</button>
+      <button onclick="showTask(3)">Task 3</button>
+      <button onclick="showTask(4)">Task 4</button>
+      <button onclick="showTask(5)">Task 5</button>
+      <button onclick="showTask(6)">Task 6</button>
+      <button onclick="showTask(7)">Task 7</button>
+    </header>
+
+    <div class="task active" id="task1">
+      <div class="container">
+        <h2>Age to Days Converter</h2>
+        <input type="number" id="age" placeholder="Enter age in years" />
+        <button onclick="convertAgeToDays()">Convert</button>
+        <p id="ageResult" class="result"></p>
+      </div>
+    </div>
+
+    <div class="task" id="task2">
+      <div class="container">
+        <h2>Hours to Seconds Converter</h2>
+        <input type="number" id="hours" placeholder="Enter hours" />
+        <button onclick="convertHoursToSeconds()">Convert</button>
+        <p id="hoursResult" class="result"></p>
+      </div>
+    </div>
+
+    <div class="task" id="task3">
+      <div class="container" id="mainContainer">
+        <div
+          class="switch-btns"
+          style="position: absolute; top: 0; left: 0; margin-bottom: 15px"
+        >
+          <button id="btn1" class="active" onclick="showScenario(1)">
+            Scenario 1
+          </button>
+          <button id="btn2" onclick="showScenario(2)">Scenario 2</button>
+        </div>
+
+        <!-- Scenario 1 -->
+        <div id="scenario1">
+          <h2>Scenario 1: Find Next in Array</h2>
+          <input
+            type="text"
+            id="arrayInput"
+            placeholder="Enter array (e.g. 2,4,6,8)"
+          />
+          <input
+            type="text"
+            id="targetInput"
+            placeholder="Enter target number"
+          />
+          <button onclick="findNextInArray()">Find Next</button>
+          <p id="arrayResult" class="result"></p>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div id="scenario2" style="display: none">
+          <h2>Scenario 2: Find Next of a Single Number</h2>
+          <input
+            type="text"
+            id="singleNumberInput"
+            placeholder="Enter a number (integer or float)"
+          />
+          <button onclick="findNextNumber()">Get Next Number</button>
+          <p id="singleResult" class="result"></p>
+        </div>
+      </div>
+    </div>
+
+  
+    <script src="script.js"></script>
+  </body>
+</html>
