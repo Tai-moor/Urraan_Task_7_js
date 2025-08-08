@@ -15,7 +15,7 @@ function showResult(id, message) {
 function convertAgeToDays() {
   var years = document.getElementById("age").value;
   if (years) {
-    showResult("ageResult", years + " years = " + (years * 365) + " days");
+    showResult("ageResult", years + " years = " + years * 365 + " days");
   } else {
     showResult("ageResult", "Enter age.");
   }
@@ -25,14 +25,13 @@ function convertAgeToDays() {
 function convertHoursToSeconds() {
   var hrs = document.getElementById("hours").value;
   if (hrs) {
-    showResult("hoursResult", hrs + " hours = " + (hrs * 3600) + " seconds");
+    showResult("hoursResult", hrs + " hours = " + hrs * 3600 + " seconds");
   } else {
     showResult("hoursResult", "Enter hours.");
   }
 }
 
 // Task 3: Number Finder
-
 function showScenario(num) {
   document.getElementById("scenario1").style.display = "none";
   document.getElementById("scenario2").style.display = "none";
@@ -42,18 +41,19 @@ function showScenario(num) {
   document.getElementById("btn1").classList.remove("active");
   document.getElementById("btn2").classList.remove("active");
 
-
   document.getElementById("btn" + num).classList.add("active");
 }
 
 function findNextInArray() {
   const arrayInput = document.getElementById("arrayInput").value.trim();
   const targetInput = document.getElementById("targetInput").value.trim();
-  
-  const array = arrayInput.split(",").map(n => parseFloat(n.trim()));
+
+  const array = arrayInput.split(",").map(function (n) {
+    return parseFloat(n.trim());
+  });
   const target = parseFloat(targetInput);
   const index = array.indexOf(target);
-  
+
   let message = "";
 
   if (!arrayInput || !targetInput) {
@@ -63,7 +63,7 @@ function findNextInArray() {
   } else if (index === array.length - 1) {
     message = "Target is the last number. No next number.";
   } else {
-    message = `Next number after ${target} is ${array[index + 1]}`;
+    message = "Next number after " + target + " is " + array[index + 1];
   }
 
   showResult("arrayResult", message);
@@ -72,18 +72,18 @@ function findNextInArray() {
 function findNextNumber() {
   const input = document.getElementById("singleNumberInput").value.trim();
   const num = parseFloat(input);
-  
+
   let message = "";
 
   if (isNaN(num)) {
     message = "Please enter a valid number.";
   } else if (Number.isInteger(num)) {
-    message = `Next number after ${num} is ${num + 1} (Integer)`;
+    message = "Next number after " + num + " is " + (num + 1) + " (Integer)";
   } else {
     const decimalPlaces = (input.split(".")[1] || "").length;
     const increment = Math.pow(10, -decimalPlaces);
     const nextNum = (num + increment).toFixed(decimalPlaces);
-    message = `Next number after ${num} is ${nextNum} (Float)`;
+    message = "Next number after " + num + " is " + nextNum + " (Float)";
   }
 
   showResult("singleResult", message);
