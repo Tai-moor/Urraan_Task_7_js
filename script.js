@@ -1,4 +1,3 @@
-//Task 1: Show/Hide Tasks
 function showTask(n) {
   document
     .querySelectorAll(".task")
@@ -12,43 +11,52 @@ function showResult(id, message) {
   el.classList.add("show");
 }
 
-// Task 2: Convert Units
+// Task 1: Convert Age to Days
 function convertAgeToDays() {
-  let years = document.getElementById("age").value;
-  showResult(
-    "ageResult",
-    years ? `${years} years = ${years * 365} days` : "Enter age."
-  );
+  var years = document.getElementById("age").value;
+  if (years) {
+    showResult("ageResult", years + " years = " + (years * 365) + " days");
+  } else {
+    showResult("ageResult", "Enter age.");
+  }
 }
 
+// Task 2 Convert Hours to Seconds
 function convertHoursToSeconds() {
-  let hrs = document.getElementById("hours").value;
-  showResult(
-    "hoursResult",
-    hrs ? `${hrs} hours = ${hrs * 3600} seconds` : "Enter hours."
-  );
+  var hrs = document.getElementById("hours").value;
+  if (hrs) {
+    showResult("hoursResult", hrs + " hours = " + (hrs * 3600) + " seconds");
+  } else {
+    showResult("hoursResult", "Enter hours.");
+  }
 }
 
 // Task 3: Number Finder
+
 function showScenario(num) {
   document.getElementById("scenario1").style.display = "none";
   document.getElementById("scenario2").style.display = "none";
+
   document.getElementById("scenario" + num).style.display = "block";
 
   document.getElementById("btn1").classList.remove("active");
   document.getElementById("btn2").classList.remove("active");
+
+
   document.getElementById("btn" + num).classList.add("active");
 }
 
 function findNextInArray() {
-  const arrayInput = document.getElementById("arrayInput").value;
-  const targetInput = document.getElementById("targetInput").value;
-  const array = arrayInput.split(",").map((n) => parseFloat(n.trim()));
+  const arrayInput = document.getElementById("arrayInput").value.trim();
+  const targetInput = document.getElementById("targetInput").value.trim();
+  
+  const array = arrayInput.split(",").map(n => parseFloat(n.trim()));
   const target = parseFloat(targetInput);
   const index = array.indexOf(target);
-  let message;
+  
+  let message = "";
 
-  if (arrayInput.trim() === "" || targetInput.trim() === "") {
+  if (!arrayInput || !targetInput) {
     message = "Please enter both array and target number.";
   } else if (index === -1) {
     message = "Target number not found in the array.";
@@ -57,13 +65,15 @@ function findNextInArray() {
   } else {
     message = `Next number after ${target} is ${array[index + 1]}`;
   }
+
   showResult("arrayResult", message);
 }
 
 function findNextNumber() {
-  const input = document.getElementById("singleNumberInput").value;
+  const input = document.getElementById("singleNumberInput").value.trim();
   const num = parseFloat(input);
-  let message;
+  
+  let message = "";
 
   if (isNaN(num)) {
     message = "Please enter a valid number.";
@@ -75,5 +85,6 @@ function findNextNumber() {
     const nextNum = (num + increment).toFixed(decimalPlaces);
     message = `Next number after ${num} is ${nextNum} (Float)`;
   }
+
   showResult("singleResult", message);
 }
