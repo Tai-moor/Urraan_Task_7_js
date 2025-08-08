@@ -17,7 +17,7 @@ header {
   background: rgba(0, 25, 40, 0.85);
   backdrop-filter: blur(20px);
   flex-shrink: 0;
-  border-bottom: 1px solid #008080; /* teal with glow */
+  border-bottom: 1px solid #008080; 
   box-shadow: 0 0 10px #009999aa;
 }
 
