@@ -88,3 +88,25 @@ function findNextNumber() {
 
   showResult("singleResult", message);
 }
+
+
+
+
+// Task 4: Name Capitalization
+function capitalizeName() {
+  let name = document.getElementById("nameLower").value.trim();
+  let cap;
+
+  if (name) {
+    cap = name
+      .split(/\s+/)
+      .map(function (word) {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(" ");
+  } else {
+    cap = "Enter name.";
+  }
+
+  showResult("nameResult", cap);
+}
