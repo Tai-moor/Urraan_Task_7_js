@@ -139,7 +139,7 @@ function generateArray() {
   document.getElementById("lastElement").textContent = arr[arr.length - 1];
 }
 
-// Task 7: Sum of Two Numbers
+// Task 7 : Sum of Two Numbers
 document.addEventListener("DOMContentLoaded", function () {
   let num1 = document.getElementById("num1");
   let num2 = document.getElementById("num2");
