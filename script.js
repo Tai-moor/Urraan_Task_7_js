@@ -10,131 +10,104 @@ function showResult(id, message) {
   el.textContent = message;
   el.classList.add("show");
 }
+function isPositiveNumber(value) {
+  return !isNaN(value) && value > 0;
+}
 
 // Task 1: Convert Age to Days
 function convertAgeToDays() {
-  var years = document.getElementById("age").value;
-  if (years) {
-    showResult("ageResult", years + " years = " + years * 365 + " days");
-  } else {
-    showResult("ageResult", "Enter age.");
+  let years = document.getElementById("age").value.trim();
+  if (!isPositiveNumber(years)) {
+    showResult("ageResult", "Please enter a valid positive age.");
+    return;
   }
+  showResult("ageResult", `${years} years = ${years * 365} days`);
 }
 
-// Task 2 Convert Hours to Seconds
+// Task 2: Convert Hours to Seconds
 function convertHoursToSeconds() {
-  var hrs = document.getElementById("hours").value;
-  if (hrs) {
-    showResult("hoursResult", hrs + " hours = " + hrs * 3600 + " seconds");
-  } else {
-    showResult("hoursResult", "Enter hours.");
+  let hrs = document.getElementById("hours").value.trim();
+  if (!isPositiveNumber(hrs)) {
+    showResult("hoursResult", "Please enter valid positive hours.");
+    return;
   }
+  showResult("hoursResult", `${hrs} hours = ${hrs * 3600} seconds`);
 }
 
 // Task 3: Number Finder
 function showScenario(num) {
   document.getElementById("scenario1").style.display = "none";
   document.getElementById("scenario2").style.display = "none";
-
   document.getElementById("scenario" + num).style.display = "block";
-
   document.getElementById("btn1").classList.remove("active");
   document.getElementById("btn2").classList.remove("active");
-
   document.getElementById("btn" + num).classList.add("active");
 }
 
+
 function findNextInArray() {
-  const arrayInput = document.getElementById("arrayInput").value.trim();
-  const targetInput = document.getElementById("targetInput").value.trim();
+  let arrStr = document.getElementById("arrayInput").value.trim();
+  let targetStr = document.getElementById("targetInput").value.trim();
 
-  const array = arrayInput.split(",").map(function (n) {
-    return parseFloat(n.trim());
-  });
-  const target = parseFloat(targetInput);
-  const index = array.indexOf(target);
+  if (!arrStr || !targetStr)
+    return showResult("arrayResult", "Enter array and target.");
 
-  let message = "";
+  let arr = arrStr.split(",").map((n) => n.trim());
+  if (arr.some((n) => n === "" || isNaN(n)))
+    return showResult("arrayResult", "Only numbers allowed in array.");
 
-  if (!arrayInput || !targetInput) {
-    message = "Please enter both array and target number.";
-  } else if (index === -1) {
-    message = "Target number not found in the array.";
-  } else if (index === array.length - 1) {
-    message = "Target is the last number. No next number.";
-  } else {
-    message = "Next number after " + target + " is " + array[index + 1];
-  }
+  arr = arr.map(Number);
+  let target = Number(targetStr);
+  if (isNaN(target))
+    return showResult("arrayResult", "Target must be a number.");
 
-  showResult("arrayResult", message);
+  let idx = arr.indexOf(target);
+  if (idx === -1) return showResult("arrayResult", "Target not found.");
+  if (idx === arr.length - 1)
+    return showResult("arrayResult", "Target is last number.");
+
+  showResult("arrayResult", `Next number after ${target} is ${arr[idx + 1]}`);
 }
-
-function findNextNumber() {
-  const input = document.getElementById("singleNumberInput").value.trim();
-  const num = parseFloat(input);
-
-  let message = "";
-
-  if (isNaN(num)) {
-    message = "Please enter a valid number.";
-  } else if (Number.isInteger(num)) {
-    message = "Next number after " + num + " is " + (num + 1) + " (Integer)";
-  } else {
-    const decimalPlaces = (input.split(".")[1] || "").length;
-    const increment = Math.pow(10, -decimalPlaces);
-    const nextNum = (num + increment).toFixed(decimalPlaces);
-    message = "Next number after " + num + " is " + nextNum + " (Float)";
-  }
-
-  showResult("singleResult", message);
-}
-
-
-
 
 // Task 4: Name Capitalization
 function capitalizeName() {
   let name = document.getElementById("nameLower").value.trim();
-  let cap;
 
-  if (name) {
-    cap = name
-      .split(/\s+/)
-      .map(function (word) {
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      })
-      .join(" ");
-  } else {
-    cap = "Enter name.";
-  }
+  if (!name) return showResult("nameResult", "Enter a name.");
+  if (!/^[A-Za-z\s]+$/.test(name))
+    return showResult("nameResult", "Only letters and spaces allowed.");
+
+  let cap = name
+    .replace(/\s+/g, " ")
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join(" ");
 
   showResult("nameResult", cap);
 }
-
-
 
 // Task 5: BMI Calculator
 function calculateBMI() {
   let w = parseFloat(document.getElementById("weight").value);
   let h = parseFloat(document.getElementById("height").value);
-  if (w > 0 && h > 0) {
-    let bmi = (w / (h * h)).toFixed(2);
-    showResult("bmiResult", `Your BMI is ${bmi}`);
-  } else {
-    showResult("bmiResult", "Enter valid weight and height.");
+
+  if (!isPositiveNumber(w) || !isPositiveNumber(h)) {
+    showResult("bmiResult", "Enter valid positive weight and height.");
+    return;
   }
+
+  let bmi = (w / (h * h)).toFixed(2);
+  showResult("bmiResult", `Your BMI is ${bmi}`);
 }
 
 // Task 6: Array Operations
 function generateArray() {
-  let length = Math.floor(Math.random() * 6) + 5;
+  let length = Math.floor(Math.random() * 2) + 5;
   let arr = [];
   for (let i = 0; i < length; i++) {
     arr.push(Math.floor(Math.random() * 100) + 1);
   }
-
   document.getElementById("arrayOutput").textContent = arr.join(", ");
-
   document.getElementById("firstElement").textContent = arr[0];
   document.getElementById("lastElement").textContent = arr[arr.length - 1];
 }
@@ -146,11 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
   let sum = document.getElementById("sum");
 
   function updateSum() {
-    if (num1.value === "" || num2.value === "") {
-      sum.value = NaN;
-    } else {
-      sum.value = parseInt(num1.value) + parseInt(num2.value);
+    if (
+      num1.value.trim() === "" ||
+      num2.value.trim() === "" ||
+      isNaN(num1.value) ||
+      isNaN(num2.value)
+    ) {
+      sum.value = "NaN";
+      return;
     }
+    sum.value = parseFloat(num1.value) + parseFloat(num2.value);
   }
 
   num1.addEventListener("input", updateSum);
