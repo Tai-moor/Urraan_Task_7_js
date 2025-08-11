@@ -44,7 +44,6 @@ function showScenario(num) {
   document.getElementById("btn" + num).classList.add("active");
 }
 
-
 function findNextInArray() {
   let arrStr = document.getElementById("arrayInput").value.trim();
   let targetStr = document.getElementById("targetInput").value.trim();
@@ -69,6 +68,34 @@ function findNextInArray() {
   showResult("arrayResult", `Next number after ${target} is ${arr[idx + 1]}`);
 }
 
+// Task 3: Single Number Finder( scenario 2 )
+function findNextNumber() {
+  let input = document.getElementById("singleNumberInput").value.trim();
+
+  if (!input) return showResult("singleResult", "Please enter a number.");
+
+  let num = Number(input);
+
+  if (isNaN(num))
+    return showResult("singleResult", "Only valid numbers are allowed.");
+
+  if (Number.isInteger(num)) {
+
+    showResult(
+      "singleResult",
+      `Next number after ${num} is ${num + 1} (Integer)`
+    );
+  } else {
+  
+    let decimalPlaces = (input.split(".")[1] || "").length;
+    let increment = Math.pow(10, -decimalPlaces);
+    let nextNum = (num + increment).toFixed(decimalPlaces);
+    showResult(
+      "singleResult",
+      `Next number after ${num} is ${nextNum} (Float)`
+    );
+  }
+}
 // Task 4: Name Capitalization
 function capitalizeName() {
   let name = document.getElementById("nameLower").value.trim();

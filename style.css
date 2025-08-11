@@ -199,6 +199,7 @@ button:hover {
   transition: all 0.5s ease;
   display: block;
   text-shadow: 0 0 10px #00cccc;
+
 }
 
 .result.show,.display {
