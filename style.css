@@ -57,7 +57,7 @@ header {
 .container {
   position: relative;
   background: rgba(0, 25, 40, 1);
-  backdrop-filter: blur(100%);
+  backdrop-filter: blur(100px);
   padding: 45px 50px;
   border-radius: 25px;
   box-shadow: 0 10px 25px rgba(0, 153, 153, 0.5),
@@ -90,7 +90,7 @@ header {
   position: absolute;
   inset: 3px;
   background: rgba(0, 25, 40, 1);
-  backdrop-filter: blur(30px);
+backdrop-filter: blur(100px);
   border-radius: 23px;
   z-index: -1;
 }
@@ -147,7 +147,6 @@ input:focus {
   background: rgba(0, 229, 229, 0.25);
   color: #e0f0f3;
 }
-
 button {
   padding: 12px 30px;
   background: #003d40;
@@ -156,17 +155,35 @@ button {
   border: 2px solid #00b3b3;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.5s ease, color 0.5s ease,
+              border-color 0.5s ease, transform 0.3s ease;
   box-shadow: none;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 button:hover {
   background: #00b3b3;
   color: #003d40;
-  box-shadow: 0 0 15px #00e5e5, 0 0 30px #00cccc;
-  transform: scale(1.05);
+  border-color: #00e5e5;
+  transform: scale(1.02);
+  animation: pulseGlow 2s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 
+      0 0 6px rgba(0, 229, 229, 0.6),
+      0 0 14px rgba(0, 204, 204, 0.5),
+      0 0 28px rgba(0, 204, 204, 0.4);
+  }
+  100% {
+    box-shadow: 
+      0 0 12px rgba(0, 255, 255, 0.8),
+      0 0 24px rgba(0, 229, 229, 0.7),
+      0 0 48px rgba(0, 255, 255, 0.5);
+  }
 }
 
 .result,
@@ -186,13 +203,9 @@ button:hover {
   text-shadow: 0 0 10px #00cccc;
 }
 
-.result.show {
+.result.show,.display {
   opacity: 1;
   transform: translateY(0);
-}
-
-.display {
-  opacity: 1;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
