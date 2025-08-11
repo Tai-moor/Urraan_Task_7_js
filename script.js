@@ -110,3 +110,49 @@ function capitalizeName() {
 
   showResult("nameResult", cap);
 }
+
+
+
+// Task 5: BMI Calculator
+function calculateBMI() {
+  let w = parseFloat(document.getElementById("weight").value);
+  let h = parseFloat(document.getElementById("height").value);
+  if (w > 0 && h > 0) {
+    let bmi = (w / (h * h)).toFixed(2);
+    showResult("bmiResult", `Your BMI is ${bmi}`);
+  } else {
+    showResult("bmiResult", "Enter valid weight and height.");
+  }
+}
+
+// Task 6: Array Operations
+function generateArray() {
+  let length = Math.floor(Math.random() * 6) + 5;
+  let arr = [];
+  for (let i = 0; i < length; i++) {
+    arr.push(Math.floor(Math.random() * 100) + 1);
+  }
+
+  document.getElementById("arrayOutput").textContent = arr.join(", ");
+
+  document.getElementById("firstElement").textContent = arr[0];
+  document.getElementById("lastElement").textContent = arr[arr.length - 1];
+}
+
+// Task 7: Sum of Two Numbers
+document.addEventListener("DOMContentLoaded", function () {
+  let num1 = document.getElementById("num1");
+  let num2 = document.getElementById("num2");
+  let sum = document.getElementById("sum");
+
+  function updateSum() {
+    if (num1.value === "" || num2.value === "") {
+      sum.value = NaN;
+    } else {
+      sum.value = parseInt(num1.value) + parseInt(num2.value);
+    }
+  }
+
+  num1.addEventListener("input", updateSum);
+  num2.addEventListener("input", updateSum);
+});

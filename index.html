@@ -42,7 +42,7 @@
       <div class="container" id="mainContainer">
         <div
           class="switch-btns"
-          style="position: absolute; top: 0; left: 0; margin-bottom: 15px"
+          style="position: absolute; top: 5px; left: 10px; margin-bottom: 15px"
         >
           <button id="btn1" class="active" onclick="showScenario(1)">
             Scenario 1
@@ -81,7 +81,15 @@
       </div>
     </div>
 
-      <div class="task" id="task4">
+    <div class="task" id="task4">
+      <div class="container">
+        <h2>Capitalize Name</h2>
+        <input type="text" id="nameLower" placeholder="Enter lowercase name" />
+        <button onclick="capitalizeName()">Capitalize</button>
+        <p id="nameResult" class="result"></p>
+      </div>
+    </div>
+    <div class="task" id="task4">
       <div class="container">
         <h2>Capitalize Name</h2>
         <input type="text" id="nameLower" placeholder="Enter lowercase name" />
@@ -90,7 +98,37 @@
       </div>
     </div>
 
-    
+    <div class="task" id="task5">
+      <div class="container">
+        <h2>BMI Calculator</h2>
+        <input type="number" id="weight" placeholder="Weight (kg)" />
+        <input type="number" id="height" placeholder="Height (m)" />
+        <button onclick="calculateBMI()">Calculate</button>
+        <p id="bmiResult" class="result"></p>
+      </div>
+    </div>
+
+    <div class="task" id="task6">
+      <div class="container">
+        <h2>Random Array First & Last Element</h2>
+        <button onclick="generateArray()">Generate Array</button>
+<div class="display">
+        <p><b>Array:</b> <span id="arrayOutput"></span></p>
+        <p><b>First Element:</b> <span id="firstElement"></span></p>
+        <p><b>Last Element:</b> <span id="lastElement"></span></p>
+      </div>
+      </div>
+    </div>
+
+    <div class="task" id="task7">
+      <div class="container">
+        <h2>Add Two Numbers</h2>
+        <input type="number" id="num1" placeholder="First number" />
+        <input type="number" id="num2" placeholder="Second number" />
+        <input type="text" id="sum" placeholder="Result" readonly />
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
