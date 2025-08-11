@@ -17,7 +17,7 @@ header {
   background: rgba(0, 25, 40, 0.85);
   backdrop-filter: blur(20px);
   flex-shrink: 0;
-  border-bottom: 1px solid #008080; 
+  border-bottom: 1px solid #008080;
   box-shadow: 0 0 10px #009999aa;
 }
 
@@ -54,8 +54,8 @@ header {
   backdrop-filter: blur(30px);
   padding: 45px 50px;
   border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(0, 153, 153, 0.5), 
-              inset 0 0 15px rgba(0, 153, 153, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 153, 153, 0.5),
+    inset 0 0 15px rgba(0, 153, 153, 0.2);
   text-align: center;
   width: 550px;
   animation: floatCard 3.5s ease-in-out infinite;
@@ -65,13 +65,19 @@ header {
 }
 
 .container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(    from 0deg,    transparent 0deg 90deg,    #009999 90deg 180deg,    transparent 180deg 300deg,    #009999 270deg 360deg  );
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 90deg,
+    #009999 90deg 180deg,
+    transparent 180deg 300deg,
+    #009999 270deg 360deg
+  );
   animation: rotate 4s linear infinite;
   z-index: -1;
   filter: blur(10px);
@@ -80,7 +86,7 @@ header {
 }
 
 .container::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 2px;
   background: rgba(0, 25, 40, 1);
@@ -95,16 +101,6 @@ header {
     transform: rotate(360deg);
   }
 }
-
-@keyframes glowPulse {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.9);
-  }
-}
-
 
 @keyframes floatCard {
   0%,
@@ -122,7 +118,7 @@ h2 {
   font-size: 26px;
   letter-spacing: 1.5px;
   /* text-shadow: 0 5px 16px #00e5e5;*/
-  font-weight: 700; 
+  font-weight: 700;
   text-transform: uppercase;
   font-family: "Anton", sans-serif;
 }
@@ -174,7 +170,8 @@ button:hover {
   transform: scale(1.05);
 }
 
-.result ,.display{
+.result,
+.display {
   margin-top: 25px;
   font-size: 22px;
   font-weight: 700;
@@ -188,7 +185,6 @@ button:hover {
   transition: all 0.5s ease;
   display: block;
   text-shadow: 0 0 10px #00cccc;
-
 }
 
 .result.show {
@@ -197,7 +193,7 @@ button:hover {
 }
 
 .display {
-opacity: 1;
+  opacity: 1;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
