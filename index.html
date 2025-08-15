@@ -1,134 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
-      rel="stylesheet"
-    />
     <meta charset="UTF-8" />
-    <title>7 Tasks App</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Task Toolkit</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
-<header>
-    <button onclick="showTask(1)">Task 1</button>
-    <button onclick="showTask(2)">Task 2</button>
-    <button onclick="showTask(3)">Task 3</button>
-    <button onclick="showTask(4)">Task 4</button>
-    <button onclick="showTask(5)">Task 5</button>
-    <button onclick="showTask(6)">Task 6</button>
-    <button onclick="showTask(7)">Task 7</button>
-</header>
-
-    <div class="task active" id="task1">
-      <div class="container">
-        <h2>Age to Days Converter</h2>
-        <input type="number" id="age" placeholder="Enter age in years" />
-        <button onclick="convertAgeToDays()">Convert</button>
-        <p id="ageResult" class="result"></p>
-      </div>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+      <i class="fas fa-tasks"></i> JS Task <span style="color: var(--secondary)">
+        Toolkit</span
+      >
+      
     </div>
-
-    <div class="task" id="task2">
-      <div class="container">
-        <h2>Hours to Seconds Converter</h2>
-        <input type="number" id="hours" placeholder="Enter hours" />
-        <button onclick="convertHoursToSeconds()">Convert</button>
-        <p id="hoursResult" class="result"></p>
-      </div>
+    <div class="nav-item active" onclick="showTask(1)">
+      <i class="fas fa-calendar-alt"></i> Age Converter
     </div>
+    <div class="nav-item" onclick="showTask(2)">
+      <i class="fas fa-clock"></i> Time Converter
+    </div>
+    <div class="nav-item" onclick="showTask(3)">
+      <i class="fas fa-list-ol"></i> Array Finder
+    </div>
+    <div class="nav-item" onclick="showTask(4)">
+      <i class="fas fa-font"></i> Name Formatter
+    </div>
+    <div class="nav-item" onclick="showTask(5)">
+      <i class="fas fa-weight"></i> BMI Calculator
+    </div>
+    <div class="nav-item" onclick="showTask(6)">
+      <i class="fas fa-random"></i> Random Array
+    </div>
+    <div class="nav-item" onclick="showTask(7)">
+      <i class="fas fa-plus-circle"></i> Number Adder
+    </div>
+  </div>
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Task 1: Age Converter -->
+      <div class="task-container" id="task1">
+    
+        <h2 class="task-title">
+          <i class="fas fa-calendar-alt"></i> Age to Days Converter
+        </h2>
+        <div class="form-group">
+          <label class="form-label">Enter age in years:</label>
+          <input
+            type="number"
+            id="age"
+            class="form-control"
+            placeholder="e.g. 25"
+            min="1"
+            max="150"
+          />
+        </div>
+        <button class="btn" onclick="convertAgeToDays()">
+          <i class="fas fa-exchange-alt"></i> Convert
+        </button>
+        <div id="ageResult" class="result"></div>
 
-    <div class="task" id="task3">
-      <div class="container" id="mainContainer">
-        <div
-          class="switch-btns"
-          style="position: absolute; top: 5px; left: 10px; margin-bottom: 15px"
-        >
-          <button id="btn1" class="active" onclick="showScenario(1)">
-            Scenario 1
+        <div class="history-container" id="ageHistory">
+          <div class="history-title">Conversion History</div>
+          <!-- History items will be added here dynamically -->
+        </div>
+      </div>
+
+      <!-- Task 2: Time Converter -->
+      <div class="task-container" id="task2" style="display: none">
+       
+        <h2 class="task-title"><i class="fas fa-clock"></i> Time Converter</h2>
+        <div class="form-group">
+          <label class="form-label">Enter hours:</label>
+          <input
+            type="number"
+            id="hours"
+            class="form-control"
+            placeholder="e.g. 2"
+            min="0.1"
+            step="0.1"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Convert to:</label>
+          <select id="timeUnit" class="form-control">
+            <option value="seconds">Seconds</option>
+            <option value="minutes">Minutes</option>
+            <option value="days">Days</option>
+          </select>
+        </div>
+        <button class="btn" onclick="convertTime()">
+          <i class="fas fa-exchange-alt"></i> Convert
+        </button>
+        <div id="hoursResult" class="result"></div>
+      </div>
+
+      <!-- Task 3: Array Finder -->
+      <div class="task-container" id="task3" style="display: none">
+    
+        <h2 class="task-title"><i class="fas fa-list-ol"></i> Array Finder</h2>
+        <div class="scenario-buttons">
+          <button
+            class="scenario-btn active"
+            id="btn1"
+            onclick="showScenario(1)"
+          >
+            <i class="fas fa-list"></i> Scenario 1
           </button>
-          <button id="btn2" onclick="showScenario(2)">Scenario 2</button>
+          <button class="scenario-btn" id="btn2" onclick="showScenario(2)">
+            <i class="fas fa-hashtag"></i> Scenario 2
+          </button>
         </div>
 
         <!-- Scenario 1 -->
         <div id="scenario1">
-          <h2>Scenario 1: Find Next in Array</h2>
-          <input
-            type="text"
-            id="arrayInput"
-            placeholder="Enter array (e.g. 2,4,6,8)"
-          />
-          <input
-            type="text"
-            id="targetInput"
-            placeholder="Enter target number"
-          />
-          <button onclick="findNextInArray()">Find Next</button>
-          <p id="arrayResult" class="result"></p>
+          <div class="form-group">
+            <label class="form-label">Enter array (comma separated):</label>
+            <input
+              type="text"
+              id="arrayInput"
+              class="form-control"
+              placeholder="e.g. 2,4,6,8"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Enter target number:</label>
+            <input
+              type="text"
+              id="targetInput"
+              class="form-control"
+              placeholder="e.g. 4"
+            />
+          </div>
+          <button class="btn" onclick="findNextInArray()">
+            <i class="fas fa-search"></i> Find Next
+          </button>
+          <div id="arrayResult" class="result"></div>
         </div>
 
         <!-- Scenario 2 -->
         <div id="scenario2" style="display: none">
-          <h2>Scenario 2: Find Next of a Single Number</h2>
-          <input
-            type="text"
-            id="singleNumberInput"
-            placeholder="Enter a number (integer or float)"
-          />
-          <button onclick="findNextNumber()">Get Next Number</button>
-          <p id="singleResult" class="result"></p>
+          <div class="form-group">
+            <label class="form-label">Enter a number:</label>
+            <input
+              type="text"
+              id="singleNumberInput"
+              class="form-control"
+              placeholder="Integer or float"
+            />
+          </div>
+          <button class="btn" onclick="findNextNumber()">
+            <i class="fas fa-arrow-right"></i> Get Next Number
+          </button>
+          <div id="singleResult" class="result"></div>
         </div>
       </div>
-    </div>
 
-    <div class="task" id="task4">
-      <div class="container">
-        <h2>Capitalize Name</h2>
-        <input type="text" id="nameLower" placeholder="Enter lowercase name" />
-        <button onclick="capitalizeName()">Capitalize</button>
-        <p id="nameResult" class="result"></p>
+      <!-- Task 4: Name Formatter -->
+      <div class="task-container" id="task4" style="display: none">
+        <h2 class="task-title"><i class="fas fa-font"></i> Name Formatter</h2>
+        <div class="form-group">
+          <label class="form-label">Enter name:</label>
+          <input
+            type="text"
+            id="nameLower"
+            class="form-control"
+            placeholder="e.g. john doe"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Format options:</label>
+          <select id="nameFormat" class="form-control">
+            <option value="capitalize">Capitalize Each Word</option>
+            <option value="uppercase">UPPERCASE</option>
+            <option value="lowercase">lowercase</option>
+            <option value="initials">Initials Only</option>
+          </select>
+        </div>
+        <button class="btn" onclick="formatName()">
+          <i class="fas fa-magic"></i> Format Name
+        </button>
+        <div id="nameResult" class="result"></div>
       </div>
-    </div>
-    <div class="task" id="task4">
-      <div class="container">
-        <h2>Capitalize Name</h2>
-        <input type="text" id="nameLower" placeholder="Enter lowercase name" />
-        <button onclick="capitalizeName()">Capitalize</button>
-        <p id="nameResult" class="result"></p>
-      </div>
-    </div>
 
-    <div class="task" id="task5">
-      <div class="container">
-        <h2>BMI Calculator</h2>
-        <input type="number" id="weight" placeholder="Weight (kg)" />
-        <input type="number" id="height" placeholder="Height (m)" />
-        <button onclick="calculateBMI()">Calculate</button>
-        <p id="bmiResult" class="result"></p>
-      </div>
-    </div>
+      <!-- Task 5: BMI Calculator -->
+      <div class="task-container" id="task5" style="display: none">
+        <h2 class="task-title"><i class="fas fa-weight"></i> BMI Calculator</h2>
+        <div class="form-group">
+          <label class="form-label">Weight (kg):</label>
+          <input
+            type="number"
+            id="weight"
+            class="form-control"
+            placeholder="e.g. 70"
+            min="20"
+            max="300"
+            step="0.1"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Height (m):</label>
+          <input
+            type="number"
+            id="height"
+            class="form-control"
+            placeholder="e.g. 1.75"
+            min="1"
+            max="2.5"
+            step="0.01"
+          />
+        </div>
+        <button class="btn" onclick="calculateBMI()">
+          <i class="fas fa-calculator"></i> Calculate BMI
+        </button>
+        <div id="bmiResult" class="result"></div>
 
-    <div class="task" id="task6">
-      <div class="container">
-        <h2>Random Array First & Last Element</h2>
-        <button onclick="generateArray()">Generate Array</button>
-<div class="display">
-        <p><b>Array:</b> <span id="arrayOutput"></span></p>
-        <p><b>First Element:</b> <span id="firstElement"></span></p>
-        <p><b>Last Element:</b> <span id="lastElement"></span></p>
+        <div class="bmi-scale">
+          <div class="bmi-scale-title">BMI Scale:</div>
+          <div class="scale-item">
+            <div class="scale-color" style="background: #2ecc71"></div>
+            <span>Under 18.5 - Underweight</span>
+          </div>
+          <div class="scale-item">
+            <div class="scale-color" style="background: #27ae60"></div>
+            <span>18.5 - 24.9 - Normal weight</span>
+          </div>
+          <div class="scale-item">
+            <div class="scale-color" style="background: #f39c12"></div>
+            <span>25 - 29.9 - Overweight</span>
+          </div>
+          <div class="scale-item">
+            <div class="scale-color" style="background: #e74c3c"></div>
+            <span>30 and above - Obese</span>
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
 
-    <div class="task" id="task7">
-      <div class="container">
-        <h2>Add Two Numbers</h2>
-        <input type="number" id="num1" placeholder="First number" />
-        <input type="number" id="num2" placeholder="Second number" />
-        <input type="text" id="sum" placeholder="Result" readonly />
-      </div>
-    </div>
+      <!-- Task 6: Random Array -->
+      <div class="task-container" id="task6" style="display: none">
+        <h2 class="task-title">
+          <i class="fas fa-random"></i> Random Array Generator
+        </h2>
+        <div class="form-group">
+          <label class="form-label">Array size (5-20):</label>
+          <input
+            type="number"
+            id="arraySize"
+            class="form-control"
+            value="10"
+            min="5"
+            max="20"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Number range:</label>
+          <div style="display: flex; gap: 10px">
+            <input
+              type="number"
+              id="minNum"
+              class="form-control"
+              placeholder="Min"
+              value="1"
+            />
+            <input
+              type="number"
+              id="maxNum"
+              class="form-control"
+              placeholder="Max"
+              value="100"
+            />
+          </div>
+        </div>
+        <button class="btn" onclick="generateArray()">
+          <i class="fas fa-sync-alt"></i> Generate Array
+        </button>
 
-    <script src="script.js"></script>
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-value" id="arrayLength">0</div>
+            <div class="stat-label">Elements</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="arrayMin">0</div>
+            <div class="stat-label">Min Value</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="arrayMax">0</div>
+            <div class="stat-label">Max Value</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="arrayAvg">0</div>
+            <div class="stat-label">Average</div>
+          </div>
+        </div>
+
+        <div class="result" style="display: block; margin-top: 20px">
+          <p><strong>Array:</strong> <span id="arrayOutput"></span></p>
+          <p><strong>First Element:</strong> <span id="firstElement"></span></p>
+          <p><strong>Last Element:</strong> <span id="lastElement"></span></p>
+          <p><strong>Sorted Array:</strong> <span id="sortedArray"></span></p>
+        </div>
+      </div>
+
+      <!-- Task 7: Number Adder -->
+      <div class="task-container" id="task7" style="display: none">
+        <h2 class="task-title">
+          <i class="fas fa-plus-circle"></i> Number Calculator
+        </h2>
+        <div class="form-group">
+          <label class="form-label">First number:</label>
+          <input type="number" id="num1" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Second number:</label>
+          <input type="number" id="num2" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Operation:</label>
+          <select id="operation" class="form-control">
+            <option value="add">Addition (+)</option>
+            <option value="subtract">Subtraction (-)</option>
+            <option value="multiply">Multiplication (×)</option>
+            <option value="divide">Division (÷)</option>
+            <option value="power">Power (^)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Result:</label>
+          <input type="text" id="sum" class="form-control" readonly />
+        </div>
+      </div>
+
+    <script src="script.js">
+
+    
+  
+    </script>
   </body>
 </html>
